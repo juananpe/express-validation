@@ -7,13 +7,14 @@ const mongojs = require('mongojs')
 const db = mongojs('mongodb://localhost:27017/usersdb', ['users'])
 
 function erabiltzaileakBistaratu(res) {
-  db.users.find(function (err, users) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.render('users', {title: 'Erabiltzaileak', users: users});
-    }
-  })
+        db.users.find(function (err, users) {
+            db.close()
+            if (err) {
+                console.log(err);
+            } else {
+                res.render('users', {title: 'Erabiltzaileak', users: users});
+            }
+        })
 }
 
 router.get('/', function(req, res, next) {
