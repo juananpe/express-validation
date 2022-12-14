@@ -3,11 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title><%=title%></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+
+    <script>
+        function error(msg){
+            document.getElementById("error").innerHTML += `${msg}<br>`
+        }
+
+        function validateForm() {
+            document.getElementById("error").innerHTML = ''
+            let valid = true;
+            let keys = ["name", "surname", "email"]
+            keys.forEach(key => {
+                if (document.getElementById("form")[key].value == "") {
+                    error(`${key} is required`)
+                    valid = false;
+                }
+            })
+
+            if (valid) {
+                document.getElementById("form").submit();
+            }
+        }
+
+        window.onload = function(){
+            document.getElementById("bidali").addEventListener('click', validateForm)
+        }
+
+    </script>
 </head>
 <body>
 
 <!-- create a form with 3 fields and 3 labels, name, surname and email -->
-<form action="/user" method="post">
+<form action="/user" method="post" id="form">
     <p>
         <label for="name">izena</label> <input type="text" name="izena" id="name">
     </p>
@@ -18,8 +46,10 @@
         <label for="email">email</label>
         <input type="text" name="email" id="email">
     </p>
-    <input type="submit" value="Sortu">
+    <input type="button" value="Sortu" id="bidali">
 </form>
+
+<div id="error"></div>
 
 <h2>Erabiltzaileak</h2>
 <p>
@@ -30,15 +60,6 @@
 <% }) %>
 </p>
 <p>
-<style>
-
-    /* a active decoration none */
-    .danger a {
-        color: red;
-        text-decoration: none;
-    }
-
-</style>
     <div class="danger">
         <a href="/user/deleteAll">Ezabatu denak</a>
      </div>
