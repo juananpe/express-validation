@@ -43,7 +43,7 @@ router.post('/user', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      erabiltzaileakBistaratu(res)
+        res.redirect('/users');
     }
   })
 })
@@ -53,7 +53,7 @@ router.get('/user/deleteAll', function(req, res) {
         if (err) {
         console.log(err);
         } else {
-          erabiltzaileakBistaratu(res)
+          res.redirect('/users');
         }
     })
 })
