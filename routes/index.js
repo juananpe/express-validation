@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+const { body, validationResult } = require('express-validator');
+
 const mongojs = require('mongojs')
-const db = mongojs('usersdb', ['users'])
+const db = mongojs('mongodb://localhost:27017/usersdb', ['users'])
 
 function erabiltzaileakBistaratu(res) {
   db.users.find(function (err, users) {
@@ -16,6 +18,10 @@ function erabiltzaileakBistaratu(res) {
 
 router.get('/', function(req, res, next) {
   res.redirect('/users');
+})
+
+router.get('/user', function(req, res, next) {
+    res.redirect('/users');
 })
 
 /* GET home page. */
@@ -42,5 +48,14 @@ router.post('/user', function(req, res) {
   })
 })
 
+router.get('/user/deleteAll', function(req, res) {
+    db.users.remove({}, function(err) {
+        if (err) {
+        console.log(err);
+        } else {
+          erabiltzaileakBistaratu(res)
+        }
+    })
+})
 
 module.exports = router;
