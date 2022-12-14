@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%>></title>
+</head>
+<body>
+
+<!-- create a form with 3 fields and 3 labels, name, surname and email -->
+<form action="/user" method="post">
+    <p>
+        <label for="name">izena</label> <input type="text" name="izena" id="name">
+    </p>
+    <p><label for="surname">abizena</label>
+        <input type="text" name="abizena" id="surname">
+    </p>
+    <p>
+        <label for="email">email</label>
+        <input type="text" name="email" id="email">
+    </p>
+    <input type="submit" value="Sortu">
+</form>
+
+<h2>Erabiltzaileak</h2>
+<p>
+<% users.forEach(user => { %>
+
+    <%= user.izena + " " + user.abizena + " " + user.email %> <br>
+
+<% }) %>
+</p>
+
+</body>
+</html>
