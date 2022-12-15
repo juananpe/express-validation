@@ -4,7 +4,7 @@ var router = express.Router();
 const { body, validationResult } = require('express-validator');
 
 const mongojs = require('mongojs')
-const db = mongojs('mongodb://localhost:27017/usersdb', ['users'])
+const db = mongojs('mongodb://127.0.0.1:27017/usersdb', ['users'])
 
 function erabiltzaileakBistaratu(res) {
         db.users.find(function (err, users) {
